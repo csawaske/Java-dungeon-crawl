@@ -1,0 +1,9 @@
+package game;
+
+public class Item {
+	public String type;
+	boolean weaponMod;
+	
+	
+	
+}

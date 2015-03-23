@@ -1,0 +1,12 @@
+package game;
+
+import java.io.*;
+
+public class test {
+	
+	public static void main(String[] args) throws FileNotFoundException {
+		File f = new File("WeaponList.txt");
+		System.out.print(f.canRead());
+	}
+
+}

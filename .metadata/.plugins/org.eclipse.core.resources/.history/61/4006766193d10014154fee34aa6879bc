@@ -1,0 +1,66 @@
+package game;
+import java.io.*;
+import java.util.*;
+
+
+public class weapon {
+	
+	private String weaponName = "";
+	private int baseDamage;
+	private int damage;
+	private int block;
+	private int range;
+	private int baseDurability;
+	private int durability;
+	private int modifierCount;
+	private int chanceToIgnite;
+	private String modifier;
+	
+	public weapon(String name) throws FileNotFoundException {
+		Scanner findWeapon = new Scanner(new File("WeaponList.txt"));
+		while (findWeapon.hasNextLine()) {
+			Scanner thisLine = new Scanner(findWeapon.nextLine());
+			if (name.equals(thisLine.next())) {
+				baseDamage = thisLine.nextInt();
+				baseDurability = thisLine.nextInt();
+				block = thisLine.nextInt();
+				range = thisLine.nextInt();
+				chanceToIgnite = thisLine.nextInt();
+				modifier = thisLine.next();
+			}
+			thisLine.close();
+		}
+		findWeapon.close();
+		damage = baseDamage;
+		durability = 20;
+	}
+	
+	public do
+	
+	public String use() {
+		modifierCount--;
+		durability--;
+		String output = "";
+		if (modifierCount == 0) {
+			damage = baseDamage;
+			output = modifier;
+			modifier = "";
+		}
+		if (durability == 0) {
+			output = "broke";
+		}
+		return output;
+	}
+	
+	public void modify(String type) {
+		modifier = type;
+		if (type.equals("fire")) {
+			damage += 3;
+			chanceToIgnite = 50;
+		}
+		if (type.equals("sharpen")) {
+			durability = baseDurability;
+		}
+	}
+	
+}

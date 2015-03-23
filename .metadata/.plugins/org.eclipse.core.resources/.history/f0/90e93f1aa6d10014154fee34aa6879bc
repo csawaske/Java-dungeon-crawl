@@ -1,0 +1,11 @@
+package game;
+
+public class Character {
+	
+	public String name;
+	public ArrayList<Item> inventory = new ArrayList<Item>();
+	public ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+	
+	
+
+}

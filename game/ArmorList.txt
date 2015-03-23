@@ -1,0 +1,3 @@
+Name			damageReduction	durability	agilityReduction
+Loincloth		0				10			0
+Loincloth disintegrated!

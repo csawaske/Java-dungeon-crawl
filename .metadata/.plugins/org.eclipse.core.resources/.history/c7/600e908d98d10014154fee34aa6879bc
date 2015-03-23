@@ -1,0 +1,6 @@
+package game;
+
+public class test {
+	weapon IronSword = new weapon("Iron Sword");
+
+}
