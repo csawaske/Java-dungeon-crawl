@@ -1,0 +1,14 @@
+package game;
+import java.io.*;
+
+public class Mage extends Character {
+	
+	public Mage(String name, String title) throws FileNotFoundException {
+		characterName = name;
+		characterTitle = title;
+		weapons.add(new Weapon("Flame Sword", "HellBreaker"));
+		armor.add(new Armor("Loincloth"));
+		stats = new int[] {5, 5, 8, 10};
+	}
+
+}

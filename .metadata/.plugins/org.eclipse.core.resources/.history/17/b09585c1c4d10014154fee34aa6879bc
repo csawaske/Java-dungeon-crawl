@@ -1,0 +1,12 @@
+package game;
+
+public class Item {
+	public String modifierType;
+	boolean weaponMod = true;
+	boolean armorMod = true;
+	
+	public String toString() {
+		return "";
+	}
+	
+}

@@ -1,12 +1,18 @@
 package game;
 
 public class Item {
-	public String modifierType;
-	boolean weaponMod;
-	boolean armorMod;
+	
+	public String itemName;
+	public String modifierType = "fire";
+	boolean weaponMod = true;
+	boolean armorMod = true;
+	
+	public Item(String name) {
+		itemName = name;
+	}
 	
 	public String toString() {
-		return "";
+		return "item";
 	}
 	
 }
