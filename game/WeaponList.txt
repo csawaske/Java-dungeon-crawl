@@ -3,6 +3,6 @@ Iron Sword
 				1		10 			30				20 		1		0		0
 Iron Sword broke!	
 
-FlameSword
+Flame Sword
 				1		8			5				0		1		1		80
 Flame Sword extinguished!
