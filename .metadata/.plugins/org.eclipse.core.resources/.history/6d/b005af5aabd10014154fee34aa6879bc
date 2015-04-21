@@ -1,8 +1,0 @@
-Name			type	baseDamage	baseDurability	block	range	mod		modChance
-Iron Sword
-				1		10 			30				40 		1		0		0
-Iron Sword broke!	
-
-FlameSword
-				1		8			5				0		1		1		80
-Flame Sword extinguished!

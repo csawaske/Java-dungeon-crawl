@@ -3,17 +3,18 @@ import java.io.*;
 import java.util.*;
 
 
-public class Weapon {
+public class Weapon extends Item {
 
 	
 	private String weaponType;
 	private String weaponName;
-	private int[] stats = new int[7];
+	public int[] stats = new int[7];
 	private int baseDamage;
 	private int baseDurability;
 	private int modCount;
 	private String breakString;
 	private boolean foundWeapon;
+	public int range = 1;
 	
 	
 	public Weapon(String type, String name) throws FileNotFoundException {
@@ -44,16 +45,16 @@ public class Weapon {
 	}
 	
 	
-	public int[] use() {
+	public void use() {
 		modCount--;
 		stats[1]--;
 		if (modCount == 0) {
 			stats[1] = baseDamage;
 			stats[5] = 0;
 		}
-		return stats;	
 	}
 	
+
 	
 	public String getBreakString() {
 		return breakString;

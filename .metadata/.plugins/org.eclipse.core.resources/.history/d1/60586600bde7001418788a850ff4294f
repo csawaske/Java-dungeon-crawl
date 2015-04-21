@@ -1,0 +1,50 @@
+package game;
+import java.awt.*;
+import java.util.*;
+
+public class BattleTest {
+	
+	static ArrayList<Character> characters = new ArrayList<Character>();
+
+	public static void main(String[] args) {
+		characters.add(new Character("Jerry"));
+		characters.add(new Barbarian("Connor"));
+		Scanner console = new Scanner(System.in);
+		boolean running = true;
+		int moveCount = 0;
+		characters.get(0).position = new Point(100, 100);
+		DrawingPanel panel = new DrawingPanel(400, 400);
+		Graphics g = panel.getGraphics();
+		g.setFont(new Font("Monospaced", Font.BOLD, 20));
+		while (running = true) {
+			drawState(g);
+			for (Character character : characters) {
+				Move thisMove = characters.get(0).getMove();
+				if (thisMove.action.equals(Action.MOVE)) {
+					switch (thisMove.dir) {
+					case UP: characters.get(0).position.translate(0, -20);
+						break;
+					case DOWN: characters.get(0).position.translate(0, 20);
+						break;
+					case LEFT: characters.get(0).position.translate(-20, 0);
+						break;
+					case RIGHT: characters.get(0).position.translate(20, 0);
+						break;
+					default: break;
+					}
+				}
+				drawState(g);
+			}
+		}
+	}
+	
+	
+	public static void drawState(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 400, 400);
+		for (Character character : characters) {
+			g.setColor(character.getColor());
+			g.drawString(character.getStringRep(), character.position.x - 5, character.position.y + 8);
+		}
+	}
+}

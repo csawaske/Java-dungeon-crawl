@@ -1,0 +1,43 @@
+package game;
+import java.awt.*;
+import java.util.*;
+
+public class BattleTest {
+
+	public static void main(String[] args) {
+		Scanner console = new Scanner(System.in);
+		boolean running = true;
+		int moveCount = 0;
+		Character Terry = new Character("Terry");
+		Terry.position = new Point(100, 100);
+		DrawingPanel panel = new DrawingPanel(400, 400);
+		Graphics g = panel.getGraphics();
+		while (running = true) {
+			g.setColor(Terry.getColor());
+			g.drawString(Terry.getStringRep(), Terry.position.x, Terry.position.y);
+			Move thisMove = Terry.getMove();
+			if (thisMove.action.equals(Action.MOVE)) {
+				switch (thisMove.dir) {
+				case UP: Terry.position.translate(0, -20);
+					break;
+				case DOWN: Terry.position.translate(0, 20);
+					break;
+				case LEFT: Terry.position.translate(-20, 0);
+					break;
+				case RIGHT: Terry.position.translate(20, 0);
+					break;
+				default: break;
+				}
+			}
+			g.setColor(Terry.getColor());
+			g.drawString(Terry.getStringRep(), Terry.position.x, Terry.position.y);
+			
+			promptForNext(console);
+		}
+	}
+	
+	public static void promptForNext(Scanner console) {
+		System.out.println("(N)ext move");
+		String input = console.next();
+	}
+}

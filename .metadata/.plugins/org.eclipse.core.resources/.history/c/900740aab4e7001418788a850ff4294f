@@ -1,0 +1,108 @@
+package game;
+import java.util.*;
+import java.awt.*;
+import java.io.*;
+
+public class Character {
+
+	Scanner console = new Scanner(System.in);
+	
+	public Point position = new Point();
+	public Item equippedWeapon;
+	public Item equippedArmor;
+		
+	public String characterName;
+	public ArrayList<Item> inventory = new ArrayList<Item>();
+	public ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+	public ArrayList<Armor> armor = new ArrayList<Armor>();
+	public int[] stats = new int[4];
+	public int money = 100;
+	
+	
+	
+	public Character(String name) {	
+		characterName = name;
+	}
+
+	public Character() {
+		this("");
+	}
+	
+	public String getName() {
+		return characterName;
+	}
+	
+	public String getStringRep() {
+		return characterName.substring(0,  1).toUpperCase();
+	}
+	
+	public Color getColor() {
+		return Color.BLACK;
+	}
+	
+	public void showInventory() {
+		for (int i = 0; i <inventory.size(); i++) {
+			System.out.println(inventory.get(i).toString());
+		}
+	}
+
+	public Move getMove() {
+		Move move = new Move();
+		System.out.println("Next move?");
+		System.out.println("(m)ove\t (a)ttack\t (u)se item\t (i)nteract\t(T)alk: ");
+		String input = console.next();
+		switch (input) {
+			case "m": move.action = Action.MOVE;
+					move.dir = this.promptDirection();
+			case "a": move.action = Action.ATTACK;
+					move.dir = this.promptDirection();
+					move.item = equippedWeapon;
+			case "u": move.action = Action.USE;
+					move.item = promptItem();
+					move.dir = this.promptDirection();
+			case "i": move.action = Action.INTERACT;
+					move.dir = this.promptDirection();
+			case "t": move.action = Action.TALK;
+					move.dir = this.promptDirection();
+			default: System.out.println("Invalid input. Too slow!");
+					move.action = Action.STAY;
+					move.dir = Direction.UP;
+		}
+		return move;
+	}
+
+	
+	
+	
+	
+	public Direction promptDirection() {
+		System.out.println("Direction?");
+		System.out.println("(u)p, (d)own, (l)eft, (r)ight: ");
+		String input = console.next();
+		switch (input) {
+			case "u": return Direction.UP;
+			case "d": return Direction.DOWN;
+			case "l": return Direction.LEFT;
+			case "r": return Direction.RIGHT;
+			default: System.out.println("Invalid input. Too slow!");
+					return Direction.STAY;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	public Item promptItem() {
+		System.out.println("Current inventory:");
+		for (int i = 0; i < inventory.size(); i++) {
+			System.out.println((i + 1) + ". " + inventory.get(i));
+		}
+		System.out.println("Type item number to use: ");
+		int itemNumber = console.nextInt();
+		return inventory.get(itemNumber - 1);
+	}
+		
+
+}
