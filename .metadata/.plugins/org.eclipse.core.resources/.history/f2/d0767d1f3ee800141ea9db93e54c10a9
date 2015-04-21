@@ -1,0 +1,12 @@
+package game;
+import java.util.*;
+
+public class DungeonNode {
+
+	public ArrayList<Character> characterList = new ArrayList<Character>();
+	public DungeonNode up;
+	public DungeonNode down;
+	public DungeonNode right;
+	public DungeonNode left;
+	
+}
