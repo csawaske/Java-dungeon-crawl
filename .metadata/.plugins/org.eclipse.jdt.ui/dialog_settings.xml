@@ -35,6 +35,7 @@
 		<item value="false" key="updateTextualMatches"/>
 		<item value="false" key="updateSimilarElements"/>
 	</section>
+<<<<<<< HEAD
 	<section name="org.eclipse.jdt.internal.ui.text.QuickOutline">
 		<item value="false" key="GoIntoTopLevelTypeAction.isChecked"/>
 		<item value="true" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_USE_PERSISTED_SIZE"/>
@@ -42,4 +43,6 @@
 		<item value="300" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_HEIGHT"/>
 		<item value="false" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_USE_PERSISTED_LOCATION"/>
 	</section>
+=======
+>>>>>>> origin/master
 </section>

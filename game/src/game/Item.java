@@ -2,14 +2,14 @@ package game;
 
 public class Item {
 	
-	public String itemName;
+	public String name;
 	public String modifierType = "fire";
 	boolean weaponMod = true;
 	boolean armorMod = true;
 	public int[] stats = new int[7];
 	
-	public Item(String name) {
-		itemName = name;
+	public Item(String nameIn) {
+		name = nameIn;
 	}
 	
 	public Item() {
