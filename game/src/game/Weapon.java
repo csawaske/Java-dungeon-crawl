@@ -4,17 +4,23 @@ import java.util.*;
 
 
 public class Weapon extends Item {
-
 	
-	private String weaponType;
-	private String weaponName;
-	public int[] stats = new int[7];
-	private int baseDamage;
-	private int baseDurability;
-	private int modCount;
-	private String breakString;
-	private boolean foundWeapon;
+	public String weaponType;
+	public String weaponName;
+	
+	// weapon stats
+	public int weaponClass;
+	public int damage;
+	public int baseDamage;
+	public int baseDurability;
+	public int durability;
+	public int block;
 	public int range = 1;
+	public int mod = 1;
+	public int modChance;
+	public int modCount;
+	public String breakString;
+	public boolean foundWeapon;
 	
 	
 	public Weapon(String type, String name) throws FileNotFoundException {
@@ -26,31 +32,33 @@ public class Weapon extends Item {
 			if (type.equals(thisLine)) {
 				foundWeapon = true;
 				Scanner weaponStats = new Scanner(findWeapon.nextLine());
-				for (int i = 0; i <= 6; i++) {
-					stats[i] = weaponStats.nextInt();
-				}
-				baseDamage = stats[1];
-				
-				baseDurability = stats[2];
+				weaponClass = weaponStats.nextInt();
+				baseDamage = weaponStats.nextInt();
+				baseDurability = weaponStats.nextInt();
+				block = weaponStats.nextInt();
+				range = weaponStats.nextInt();
+				mod = weaponStats.nextInt();
+				modChance = weaponStats.nextInt();
 				breakString = findWeapon.nextLine();
 				weaponStats.close();
 			}
 		}
 		findWeapon.close();
+		damage = baseDamage;
 	}
 	
 	
 	public String examine() {
-		return "Name: \t " + weaponName + "\t " + weaponType + "\n Damage: " + stats[1];
+		return "Name: \t " + weaponName + "\t " + weaponType + "\n Damage: " + damage;
 	}
 	
 	
 	public void use() {
 		modCount--;
-		stats[1]--;
+		durability--;
 		if (modCount == 0) {
-			stats[1] = baseDamage;
-			stats[5] = 0;
+			damage = baseDamage;
+			mod = 0;
 		}
 	}
 	
@@ -67,16 +75,16 @@ public class Weapon extends Item {
 	public String modify(Item modifier) {
 		if (modifier.weaponMod == true) {
 			if (modifier.modifierType.equals("fire")) {
-				stats[5] = 1;
-				stats[0] += 3;
-				stats[5] = 50;
+				mod = 1;
+				damage += 3;
+				modChance = 50;
 				return "You've applied fire to your " + weaponName + ".";
 			}
 			if (modifier.equals("sharpen")) {
-				if (stats[0] >= 5) {
+				if ( weaponClass >= 5) {
 					return "You can't sharpen your " + weaponName + ".";
 				} else {
-					stats[2] = baseDurability;
+					durability = baseDurability;
 					return "You've sharpened your " + weaponName + ".";
 				}
 			}

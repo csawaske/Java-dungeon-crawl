@@ -1,6 +1,7 @@
 package game;
 import java.util.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 
 public class DungeonNode {
 
@@ -9,6 +10,14 @@ public class DungeonNode {
 	public DungeonNode down;
 	public DungeonNode right;
 	public DungeonNode left;
-	public Point size = new Point(100, 100);
+	public DungeonNode above;
+	public DungeonNode below;
+	public DungeonNode ether;
+	public int x = 100;
+	public int y = 100;
+	public void generateUp() throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

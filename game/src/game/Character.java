@@ -3,17 +3,37 @@ import java.util.*;
 import java.awt.*;
 import java.io.*;
 
-public class Character {
+public class Character{
 
 	Scanner console = new Scanner(System.in);
+
 	
-	public Point position = new Point();
+	public Point position;
+	
+	//stats
+	public int level = 1;
+	public int HP = 1;
+	public int corePhysAtk = 5;
+	public int corePhysDef = 5;
+	public int coreMagAtk = 5;
+	public int coreMagDef = 5;
+	public int speed = 5;
+	public int intel = 5;
+	
+	
+	
+	
+	
+	
+	// loadout
 	public Weapon primaryWeapon;
 	public Weapon secondaryWeapon;
 	public Item equippedArmor;
+	
+	
+	
 	public Color color = Color.WHITE;
-	public int evade;
-	public int HP = 10;
+
 	public String stringRep;
 	public boolean dead = false;
 	
@@ -23,7 +43,6 @@ public class Character {
 	public ArrayList<Item> inventory = new ArrayList<Item>();
 	public ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 	public ArrayList<Armor> armor = new ArrayList<Armor>();
-	public int[] stats = new int[4];
 	public int money = 100;
 	public ArrayList<Item> hotInventory = new ArrayList<Item>() {{
 		add(new Item("ONE"));
@@ -32,13 +51,17 @@ public class Character {
 	}};
 	
 	
-	public Character(String name) {	
+	public Character(String name) throws FileNotFoundException {	
 		characterName = name;
-		stringRep = name.substring(0, 1).toUpperCase();
+		stringRep = name.substring(0, 2).toUpperCase();
+		position = new Point(50, 50);
+		primaryWeapon = new Weapon("Fist", "Fist");
+		secondaryWeapon = new Weapon("Fist", "Fist");
+		
 	}
 
-	public Character() {
-		this(" ");
+	public Character() throws FileNotFoundException {
+		this("  ");
 	}
 	
 	public String getStringRep() {
@@ -60,13 +83,17 @@ public class Character {
 			return new Move();
 		}
 		Move move = new Move();
+		
+		// prompts for move
 		System.out.println("Move:\t\t(u)p\t\t(d)own\t\t(l)eft\t\t(r)ight");
 		System.out.println("Attack:\t\t(p)rimary weapon, " + primaryWeapon);
 		System.out.println("\t\t(s)econdary weapon, " + secondaryWeapon);
 		System.out.println("Quick items: \t(1) " + hotInventory.get(0) + "\t(2) " + hotInventory.get(1) + "\t(3) " + hotInventory.get(2));
-		System.out.println("Other options:\t(i)nteract\t(t)alk\t\t(m)anage inventory");
+		System.out.println("Other options:\t(i)nteract\t(t)alk\t\t(m)anage character and inventory");
 		System.out.println("Next action?");
 		String actionInput = console.next();
+		
+		//process input
 		switch (actionInput) {
 			case "u": move.action = Action.MOVE;
 					move.dir = Direction.UP;

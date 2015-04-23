@@ -10,8 +10,7 @@ public class SamplePlayer extends Character{
 		super(name);
 		weapons.add(new Weapon("Iron Sword", "HellBreaker"));
 		armor.add(new Armor("Loincloth"));
-		stats = new int[] {10, 10, 2, 2};
-		position = new Point(200, 200);
+		position = new Point(150, 150);
 		color = Color.RED;
 		primaryWeapon = weapons.get(0);
 	}
