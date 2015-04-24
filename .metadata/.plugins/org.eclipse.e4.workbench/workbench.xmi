@@ -198,8 +198,12 @@
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_F84yMOffEeSSyLfSxZNtmg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="BattleTest.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
+<<<<<<< Updated upstream
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BattleTest.java&quot; partName=&quot;BattleTest.java&quot; title=&quot;BattleTest.java&quot; tooltip=&quot;game/src/game/BattleTest.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/game/src/game/BattleTest.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;33&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;577&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
 >>>>>>> origin/master
+=======
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BattleTest.java&quot; partName=&quot;BattleTest.java&quot; title=&quot;BattleTest.java&quot; tooltip=&quot;game/src/game/BattleTest.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/game/src/game/BattleTest.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;577&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
+>>>>>>> Stashed changes
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -269,8 +273,12 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot; partName=&quot;Problems&quot;>&#xA;&lt;expanded>&#xA;&lt;category IMemento.internal.id=&quot;Warnings (10 items)&quot;/>&#xA;&lt;/expanded>&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;90&quot; org.eclipse.ui.ide.pathField=&quot;120&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;405&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xA;&lt;/view>"/>
 =======
     <sharedElements xsi:type="basic:Part" xmi:id="_DhUHoOffEeSSyLfSxZNtmg" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" closeable="true">
+<<<<<<< Updated upstream
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot; partName=&quot;Problems&quot;>&#xA;&lt;expanded>&#xA;&lt;category IMemento.internal.id=&quot;Warnings (10 items)&quot;/>&#xA;&lt;/expanded>&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;90&quot; org.eclipse.ui.ide.pathField=&quot;120&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;300&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xA;&lt;/view>"/>
 >>>>>>> origin/master
+=======
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot; partName=&quot;Problems&quot;>&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;90&quot; org.eclipse.ui.ide.pathField=&quot;120&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;300&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xA;&lt;/view>"/>
+>>>>>>> Stashed changes
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <menus xmi:id="_D2E2sOffEeSSyLfSxZNtmg" elementId="org.eclipse.ui.views.ProblemView">
@@ -374,11 +382,15 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_DLhd0OffEeSSyLfSxZNtmg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_hwNDUOg7EeS1VsnUoBCd9Q" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_SBnJ_9GGEeSTluaRSQjJXA"/>
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_DLsc8OffEeSSyLfSxZNtmg" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_CsvQE-ffEeSSyLfSxZNtmg"/>
 >>>>>>> origin/master
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_GHjcwOhxEeSwcuiKHR9IYw" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_CsvQE-ffEeSSyLfSxZNtmg"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_DLiE4OffEeSSyLfSxZNtmg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -402,11 +414,15 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_DLjTAOffEeSSyLfSxZNtmg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_hwSi4Og7EeS1VsnUoBCd9Q" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_SBenENGGEeSTluaRSQjJXA"/>
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_DLzKoeffEeSSyLfSxZNtmg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_Csf_j-ffEeSSyLfSxZNtmg"/>
 >>>>>>> origin/master
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_GHvC8OhxEeSwcuiKHR9IYw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_Csf_j-ffEeSSyLfSxZNtmg"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_DLj6EOffEeSSyLfSxZNtmg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -708,8 +724,12 @@
 =======
     <bindings xmi:id="_Cu5zQOffEeSSyLfSxZNtmg" keySequence="ALT+CTRL+H" command="_Csh0u-ffEeSSyLfSxZNtmg"/>
     <bindings xmi:id="_Cu6aUOffEeSSyLfSxZNtmg" keySequence="ALT+COMMAND+SHIFT+ARROW_DOWN" command="_CszhgeffEeSSyLfSxZNtmg"/>
+<<<<<<< Updated upstream
     <bindings xmi:id="_CvQ_oeffEeSSyLfSxZNtmg" keySequence="COMMAND+CTRL+F" command="_CvQYkuffEeSSyLfSxZNtmg"/>
 >>>>>>> origin/master
+=======
+    <bindings xmi:id="_Fn33IOhxEeSwcuiKHR9IYw" keySequence="COMMAND+CTRL+F" command="_CvQYkuffEeSSyLfSxZNtmg"/>
+>>>>>>> Stashed changes
   </bindingTables>
   <bindingTables xmi:id="_CtyY8effEeSSyLfSxZNtmg" elementId="org.eclipse.ui.textEditorScope" bindingContext="_Cs9Si-ffEeSSyLfSxZNtmg">
     <bindings xmi:id="_CtyY8uffEeSSyLfSxZNtmg" keySequence="COMMAND+SHIFT+NUMPAD_MULTIPLY" command="_CsgmleffEeSSyLfSxZNtmg"/>
@@ -987,8 +1007,12 @@
     <bindings xmi:id="_hJkhIOg7EeS1VsnUoBCd9Q" keySequence="M1+W" command="_SD5B49GGEeSTluaRSQjJXA"/>
 =======
   <bindingTables xmi:id="_CvS00OffEeSSyLfSxZNtmg" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_CrUTw-ffEeSSyLfSxZNtmg">
+<<<<<<< Updated upstream
     <bindings xmi:id="_CvS00effEeSSyLfSxZNtmg" keySequence="M1+W" command="_CvSNwOffEeSSyLfSxZNtmg"/>
 >>>>>>> origin/master
+=======
+    <bindings xmi:id="_Fn5FQOhxEeSwcuiKHR9IYw" keySequence="M1+W" command="_CvSNwOffEeSSyLfSxZNtmg"/>
+>>>>>>> Stashed changes
   </bindingTables>
   <bindingTables xmi:id="_Dg87QeffEeSSyLfSxZNtmg" bindingContext="_Dg87QOffEeSSyLfSxZNtmg"/>
   <bindingTables xmi:id="_Dg9iUeffEeSSyLfSxZNtmg" bindingContext="_Dg9iUOffEeSSyLfSxZNtmg"/>
