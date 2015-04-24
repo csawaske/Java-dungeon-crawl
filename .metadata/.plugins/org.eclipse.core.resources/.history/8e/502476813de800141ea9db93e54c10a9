@@ -1,8 +1,0 @@
-package game;
-import java.util.*;
-
-public class DungeonNode {
-
-	ArrayList<Character> characterList = new ArrayList<Character>();
-	
-}
