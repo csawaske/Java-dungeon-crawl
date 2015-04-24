@@ -1,0 +1,2 @@
+name		type		stats
+potion		character	5 0 0 0 0 0

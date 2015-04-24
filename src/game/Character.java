@@ -3,7 +3,7 @@ import java.util.*;
 import java.awt.*;
 import java.io.*;
 
-public class Character{
+public class Character {
 
 	Scanner console = new Scanner(System.in);
 
@@ -12,7 +12,7 @@ public class Character{
 	
 	//stats
 	public int level = 1;
-	public int HP = 1;
+	public int HP = 5;
 	public int corePhysAtk = 5;
 	public int corePhysDef = 5;
 	public int coreMagAtk = 5;
@@ -60,6 +60,7 @@ public class Character{
 		
 	}
 
+	
 	public Character() throws FileNotFoundException {
 		this("  ");
 	}

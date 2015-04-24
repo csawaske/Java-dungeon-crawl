@@ -1,15 +1,27 @@
 package game;
+import game.enums.*;
+
 import java.io.*;
 import java.util.*;
 
 
-public class Weapon extends Item {
+public class Weapon {
 	
+	// new fields
+	public WeaponType type;
 	public String weaponType;
 	public String weaponName;
+	public int[] stats;
+	public WeaponModType modtype;
+	public int modChance;
+	public Integer currentDamage;
+	public Integer currentDurability;
+	
 	
 	// weapon stats
-	public int weaponClass;
+	
+
+	
 	public int damage;
 	public int baseDamage;
 	public int baseDurability;
@@ -17,42 +29,30 @@ public class Weapon extends Item {
 	public int block;
 	public int range = 1;
 	public int mod = 1;
-	public int modChance;
 	public int modCount;
 	public String breakString;
 	public boolean foundWeapon;
 	
+	public Weapon(String name) {
+		weaponType = name;
+	}
 	
-	public Weapon(String type, String name) throws FileNotFoundException {
-		weaponName = name;
-		weaponType = type;
-		Scanner findWeapon = new Scanner(new File("WeaponList.txt"));
-		while (foundWeapon == false && findWeapon.hasNextLine()) {
-			String thisLine = findWeapon.nextLine();
-			if (type.equals(thisLine)) {
-				foundWeapon = true;
-				Scanner weaponStats = new Scanner(findWeapon.nextLine());
-				weaponClass = weaponStats.nextInt();
-				baseDamage = weaponStats.nextInt();
-				baseDurability = weaponStats.nextInt();
-				block = weaponStats.nextInt();
-				range = weaponStats.nextInt();
-				mod = weaponStats.nextInt();
-				modChance = weaponStats.nextInt();
-				breakString = findWeapon.nextLine();
-				weaponStats.close();
-			}
-		}
-		findWeapon.close();
-		damage = baseDamage;
+	public Weapon() {
+		this("");
+	}
+	
+	public void setStats() {
+		baseDamage = stats[0];
+		currentDamage = stats[0];
+		baseDurability = stats[1];
+		currentDurability = stats[2];
+		block = stats[2];
+		range = stats[3];
 	}
 	
 	
-	public String examine() {
-		return "Name: \t " + weaponName + "\t " + weaponType + "\n Damage: " + damage;
-	}
 	
-	
+
 	public void use() {
 		modCount--;
 		durability--;

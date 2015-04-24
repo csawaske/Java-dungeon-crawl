@@ -1,11 +1,15 @@
 Name			type	baseDamage	baseDurability	block	range	mod		modChance
 Iron Sword
-				1		10 			30				20 		1		0		0
-Iron Sword broke!	
-
+sword
+				1		10 			30				20 		1				
+Iron Sword broke!
+	
 Flame Sword
-				1		8			5				0		1		1		80
+sword
+				1		8			5				0		1				
 Flame Sword extinguished!
+
 Fist
-				5		5			100				5		1		0		0
+fist
+				5		5			100				5		1				
 Your forearm broke! Ouch!
