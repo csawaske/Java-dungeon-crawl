@@ -1,7 +1,0 @@
-package game;
-
-public class SamplePlayer extends Character{
-
-	
-	
-}
