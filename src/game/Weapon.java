@@ -77,11 +77,7 @@ public class Weapon extends Item {
 			if (modifier.modifierType.equals("fire")) {
 				mod = 1;
 				damage += 3;
-<<<<<<< HEAD
 				modChance = 50;
-=======
-				stats[5] = 50;
->>>>>>> origin/master
 				return "You've applied fire to your " + weaponName + ".";
 			}
 			if (modifier.equals("sharpen")) {
