@@ -1,4 +1,6 @@
-package game;
+package dungeons;
+import game.Character;
+
 import java.util.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -13,9 +15,10 @@ public class DungeonNode {
 	public DungeonNode above;
 	public DungeonNode below;
 	public DungeonNode ether;
-	public int x = 100;
-	public int y = 100;
-	public void generateUp() throws FileNotFoundException {
+	public int x = 10;
+	public int y = 10;
+	
+	public void generateUp() {
 		// TODO Auto-generated method stub
 		
 	}

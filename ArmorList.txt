@@ -1,3 +1,10 @@
-Name			damageReduction	durability	agilityReduction
-Loincloth		0				10			0
-Loincloth disintegrated!
+Name				damageReduction		evadeReduction		Element
+Underwear
+					0					0					physical
+
+Loincloth			
+					0					0					physical
+
+Robe
+					2					0					mystic
+					

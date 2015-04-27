@@ -1,118 +1,111 @@
 package game;
+import inventory.*;
+
 import java.awt.*;
 import java.io.*;
 import java.util.*;
 
-public class BattleTest {
-	
-	static ArrayList<Character> characters = new ArrayList<Character>();
-	static DungeonNode thisRoom;
+import dungeons.*;
+import enums.*;
 
-	public static void main(String[] args) throws FileNotFoundException {
-		thisRoom = new D1R1();
-		thisRoom.generateUp();
-		characters = thisRoom.characterList;
+
+
+
+public class BattleTest  {
+	
+	public static final int OFFSET = 50;
+
+	static	DungeonNode thisNode;
+	static Dungeon thisDungeon;
+
+	public static void main(String[] args) {
+		new TotalInventory();
+		new TotalDungeons();
+		Character player = new Character("Connor");
+		thisDungeon = TotalDungeons.getDungeon("The First Dungeon");
+		thisNode = thisDungeon.firstRoom;
 		Random rand = new Random();
-		Character player = new SamplePlayer("Connor");
-		characters.add(player);
+		player.rightHand = TotalInventory.getWeapon("Iron Sword");
+		thisNode.characterList.add(player);
 		boolean running = true;
 		int moveCount = 0;
-		DrawingPanel panel = new DrawingPanel(thisRoom.x, thisRoom.y);
+		DrawingPanel panel = new DrawingPanel((thisNode.x + 2) * OFFSET, (thisNode.y + 6) * OFFSET);
 		Graphics g = panel.getGraphics();
-		g.setFont(new Font("Monospaced", Font.BOLD, 20));
-		while (running = true) {
-			drawState(g, thisRoom);
-			characters = thisRoom.characterList;
-			characters.add(player);
-			for (Character character : characters) {
-				Move thisMove = character.getMove();
-				if (thisMove.action.equals(Action.MOVE)) {
-					switch (thisMove.dir) {
-					case UP: character.position.translate(0, -20);
-						break;
-					case DOWN: character.position.translate(0, 20);
-						break;
-					case LEFT: character.position.translate(-20, 0);
-						break;
-					case RIGHT: character.position.translate(20, 0);
-						break;
-					default: break;
+		g.setFont(new Font("Monospaced", Font.BOLD, 40));
+		while (running == true) {
+			drawState(g, thisNode, player);
+			for (Character character : thisNode.characterList) {
+				if (running == false || character.isDead) {
+				} else {
+					character.currentNode = thisNode;
+					Move thisMove = character.getMove();
+					
+					// process movement
+					if (thisMove.action.equals(Action.MOVE)) {
+						BattleCalculator.move(character, thisMove, thisNode);
 					}
-					if (character.position.y <= 0) {
-						if (character.position.x >= thisRoom.x / 2 - 20 && character.position.x <= thisRoom.x / 2 + 20) {
-							thisRoom = thisRoom.up;
-							character.position.y = thisRoom.y - 20;
-							thisRoom.characterList.add(character);
-						} else {
-							character.position.translate(0, 20);
-						}
+					// process attacks
+					if (thisMove.action.equals(Action.ATTACK)) {
+						BattleCalculator.attack(character, thisMove.target, thisMove);
 					}
+					drawState(g, thisNode, player);
 				}
-
-				if (thisMove.action.equals(Action.ATTACK)) {
-					Character target = null;
-					for (int i = 0; i < characters.size(); i++) {
-						if (characters.get(i).getStringRep().equals(thisMove.target)) {
-							target = characters.get(i);
-						}
-					}
-					if (target == null) {
-						System.out.println("No target by that name. You miss!");
-						break;
-					}
-					int blockChance = rand.nextInt(100);
-					int evadeChance = rand.nextInt(100);
-					if (Math.pow(Math.pow(character.position.x - target.position.x, 2) +
-							Math.pow(character.position.y - target.position.y, 2), 0.5) > 30 * character.primaryWeapon.range) {
-						System.out.println("Enemy " + target + " is too far away!");
-						System.out.println(Math.pow(Math.pow(character.position.x - target.position.x, 2) +
-							Math.pow(character.position.y - target.position.y, 2), 0.5));
-						System.out.println(character.primaryWeapon.range);
-					} else if (evadeChance < target.speed) {
-						System.out.println("Enemy " + target + " evaded your attack!");
-						
-					} else if (blockChance < target.primaryWeapon.block) {
-						System.out.println("Enemy " + target + " blocked your attack with " + target.primaryWeapon);
-					} else {
-						int damage = character.primaryWeapon.damage - target.corePhysDef;
-						target.HP -= damage;
-						System.out.println(character.primaryWeapon.damage + " " + target.corePhysDef);
-						System.out.println(character + " did " + damage + " damage to " + target + "!");
-					}
-					if (target.HP <= 0) {
-						System.out.println("Enemy " + target + " was killed by your" + character.primaryWeapon + "!");
-						System.out.println();
-						target.die();
-					}
-				}
-				
-				
-				
-				drawState(g, thisRoom);
 			}
 			moveCount++;
-		}
-	}
-	
-	
-	public static void drawState(Graphics g, DungeonNode thisRoom) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, thisRoom.x, thisRoom.y);
-		g.setColor(Color.GRAY);
-		g.fillRect(0,  0,  thisRoom.x,  10);
-		g.fillRect(0,  thisRoom.y - 10,  thisRoom.x,  10);
-		g.fillRect(0,  0, 10, thisRoom.y);
-		g.fillRect(thisRoom.x - 10, 0, 10, thisRoom.y);
-		g.setColor(Color.blue);
-		if (thisRoom.up != null) {
-			g.fillRect(thisRoom.x / 2 - 20, 0, 40, 10);
-		}
+			if (player.isDead) {
+				running = false;
+				System.out.println("Game over!");
+			}
 
-		for (Character character : thisRoom.characterList) {
-			g.setColor(character.getColor());
-			g.drawString(character.getStringRep(), character.position.x - 10, character.position.y + 8);
-			g.setColor(Color.RED);
-			g.fillRect(character.position.x, character.position.y, 2, 2);
 		}
 	}
+	
+	
+	public static void drawState(Graphics g, DungeonNode thisNode, Character player) {
+		
+		// draw borders
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, (thisNode.x + 2) * OFFSET, (thisNode.y + 6) * OFFSET);
+		g.setColor(Color.GRAY);
+		g.fillRect(0,  0,  (thisNode.x + 2) * OFFSET,  OFFSET);
+		g.fillRect(0,  (thisNode.y + 1) * OFFSET,  (thisNode.x + 2) * OFFSET,  OFFSET);
+		g.fillRect(0,  0, OFFSET, (thisNode.y + 2) * OFFSET);
+		g.fillRect((thisNode.x +1) * OFFSET, 0, OFFSET, (thisNode.y + 2) * OFFSET);
+		
+		// draw grid
+		for (int i = 2; i <= thisNode.x; i++) {
+			g.drawLine(i * OFFSET, 0, i * OFFSET, (thisNode.y + 1) * OFFSET);
+		}
+		for (int i = 2; i <= thisNode.y; i++) {
+			g.drawLine(0,  i * OFFSET, (thisNode.x + 1) * OFFSET, i * OFFSET);
+		}
+		
+		// draw doors
+		g.setColor(Color.BLACK);
+		if (thisNode.up != null) {
+			g.fillRect((thisNode.x / 2) * OFFSET, 0, 2 * OFFSET, OFFSET);
+		}
+		
+		// draw characters
+		g.setFont(new Font("Monospaced", Font.BOLD, 40));
+		for (Character character : thisNode.characterList) {
+			g.setColor(character.getColor());
+			g.drawString(character.getStringRep(), (character.position.x + 1) * OFFSET, (character.position.y + 1) * OFFSET - OFFSET / 5);
+			g.setColor(Color.RED);
+			g.fillRect((character.position.x + 1) * OFFSET, (character.position.y + 1) * OFFSET, 2, 2);
+			if (!character.isDead) {
+				g.drawRect((character.position.x + 1) * OFFSET + OFFSET / 10, (character.position.y + 1) * OFFSET - OFFSET / 6, (int)(OFFSET * 0.8), OFFSET / 8);
+				g.fillRect((character.position.x + 1) * OFFSET + OFFSET / 10, (character.position.y + 1) * OFFSET - OFFSET / 6,
+						(int)((OFFSET * 0.8) * character.HP / character.maxHP), OFFSET / 8);
+			}
+		}
+		g.setColor(Color.RED);
+		g.setFont(new Font("Monospaced", Font.BOLD, 25));
+		g.drawString("HP: ", OFFSET, (thisNode.y + 3) * OFFSET);
+		g.drawRect(2 * OFFSET, (int)((thisNode.y + 2.5) * OFFSET), 5 * OFFSET, OFFSET / 2);
+		g.fillRect(2 * OFFSET, (int)((thisNode.y + 2.5) * OFFSET), (player.HP * 5 * OFFSET / player.maxHP), OFFSET / 2);
+		
+	}
+
+
 }

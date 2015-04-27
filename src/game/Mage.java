@@ -1,13 +1,16 @@
 package game;
-import java.io.*;
+
+import inventory.Armor;
+import inventory.TotalInventory;
 
 public class Mage extends Character {
 	
-	public Mage(String name) throws FileNotFoundException {
+	public Mage(String name) {
 		characterName = name;
 		stringRep = name.substring(0, 1).toUpperCase();
-		weapons.add(new Weapon("Flame Sword", "HellBreaker"));
+		weapons.add(TotalInventory.getWeapon("Flame Sword"));
 		armor.add(new Armor("Loincloth"));
+		this.rightHand = weapons.get(0);
 	}
 
 }

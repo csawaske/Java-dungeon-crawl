@@ -1,26 +1,63 @@
 package game;
+import inventory.*;
+import enums.*;
 import java.io.*;
 import java.awt.*;
+import java.util.*;
 
 public class Barbarian extends Character {
 	
-
+	Random r = new Random();
 	
-	public Barbarian(String name) throws FileNotFoundException {
+	public Barbarian(String name) {
 		super(name);
-		weapons.add(new Weapon("Iron Sword", "HellBreaker"));
-		weapons.add(new Weapon("Flame Sword", "Ice Breaker"));
-		armor.add(new Armor("Loincloth"));
-		primaryWeapon = weapons.get(0);
+		weapons.add(TotalInventory.getWeapon("Fist"));
+		armor.add(TotalInventory.getArmor("Loincloth"));
+		this.rightHand = weapons.get(0);
 		color = Color.green;
+		alignment = Alignment.WILD;
 	}
+	
+	
+
 	
 	public Move getMove() {
 		Move move = new Move();
-		move.dir = Direction.STAY;
-		move.action = Action.MOVE;
+		Character target = null;
+		double minDistance = 100000;
+		for (Character character: currentNode.characterList) {
+			if (!character.alignment.equals(this.alignment) &&
+					character.position.distance(this.position) < minDistance &&
+					character.isDead == false) {
+				target = character;
+			}
+		}
+		if (target == null) {
+			return new Move();
+		}
+		if (this.position.distance(target.position) >= 1.5 * this.rightHand.range) {
+			move.action = Action.MOVE;
+			if (Math.abs(this.position.x - target.position.x) > Math.abs(this.position.y - target.position.y) ||
+					(Math.abs(this.position.x - target.position.x) == Math.abs(this.position.y - target.position.y) && r.nextBoolean())) {
+				if (this.position.x - target.position.x <= 0) {
+					move.dir = Direction.RIGHT;
+				} else {
+					move.dir = Direction.LEFT;
+				}
+			} else {
+				if (this.position.y - target.position.y <= 0) {
+					move.dir = Direction.DOWN;
+				} else {
+					move.dir = Direction.UP;
+				}
+			}
+			
+		} else {
+			move.action = Action.ATTACK;
+			move.weapon = this.rightHand;
+		}
+		move.target = target;
 		return move;
 	}
-	
 
 }

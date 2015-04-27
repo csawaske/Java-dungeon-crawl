@@ -1,11 +1,11 @@
-package game;
+package inventory;
 
-import game.enums.ItemType;
+import enums.ItemType;
 
 public class Consumable {
 
 	public ItemType type;
-	
+	public int quantity;
 	
 	public Consumable(String name) {
 		

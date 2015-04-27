@@ -1,77 +1,94 @@
 package game;
+import inventory.*;
+import dungeons.*;
+import enums.*;
+
 import java.util.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.*;
 
+import enums.Direction;
+
 public class Character {
-
 	Scanner console = new Scanner(System.in);
-
 	
-	public Point position;
+	// IMPORTANT! USED FOR BATTLE! SET EQUAL TO OFFSET IN BATTLETEST
+	public final int SIZE = 50;
+	
+	
+	// names and representations
+	public String characterName;
+	public String stringRep;
+	public Color color = Color.WHITE;
+	
+
 	
 	//stats
 	public int level = 1;
+	public int exp = 0;
+	public int maxHP = 5;
 	public int HP = 5;
-	public int corePhysAtk = 5;
-	public int corePhysDef = 5;
-	public int coreMagAtk = 5;
-	public int coreMagDef = 5;
-	public int speed = 5;
-	public int intel = 5;
+	public int strength = 5;
+	public int dexterity = 5;
+	public int constitution = 5;
+	public int intelligence = 5;
+	public int wisdom = 5;
+	public int charisma = 5;
+	public Alignment alignment = Alignment.NEUTRAL;
+	public EnumSet<Language> languages = EnumSet.of(Language.MUTE);
 	
-	
-	
-	
+	public boolean isDead = false;
 	
 	
 	// loadout
-	public Weapon primaryWeapon;
-	public Weapon secondaryWeapon;
+	
+	public ArrayList<Weapon> weapons = new ArrayList<Weapon>();	
+	public Weapon rightHand = TotalInventory.getWeapon("Fist");
+	public Weapon leftHand = TotalInventory.getWeapon("Fist");
+	
+	
+	public ArrayList<Armor> armor = new ArrayList<Armor>();	
 	public Item equippedArmor;
 	
-	
-	
-	public Color color = Color.WHITE;
-
-	public String stringRep;
-	public boolean dead = false;
-	
-	public int totalDefense = 8;
-		
-	public String characterName;
-	public ArrayList<Item> inventory = new ArrayList<Item>();
-	public ArrayList<Weapon> weapons = new ArrayList<Weapon>();
-	public ArrayList<Armor> armor = new ArrayList<Armor>();
-	public int money = 100;
+	public ArrayList<Item> inventory = new ArrayList<Item>();	
 	public ArrayList<Item> hotInventory = new ArrayList<Item>() {{
 		add(new Item("ONE"));
 		add(new Item("TWO"));
 		add(new Item("THREE"));
 	}};
+	public int money = 100;	
 	
 	
-	public Character(String name) throws FileNotFoundException {	
+	
+	
+	// location trackers
+	public Point position;
+	public DungeonNode currentNode;
+
+	
+		
+	public Character(String name) {	
 		characterName = name;
 		stringRep = name.substring(0, 2).toUpperCase();
-		position = new Point(50, 50);
-		primaryWeapon = new Weapon("Fist", "Fist");
-		secondaryWeapon = new Weapon("Fist", "Fist");
-		
+		position = new Point(2, 2);
 	}
 
 	
-	public Character() throws FileNotFoundException {
+	public Character() {
 		this("  ");
 	}
+	
 	
 	public String getStringRep() {
 		return stringRep;
 	}
 	
+	
 	public Color getColor() {
 		return color;
 	}
+	
 	
 	public void showInventory() {
 		for (int i = 0; i <inventory.size(); i++) {
@@ -79,68 +96,89 @@ public class Character {
 		}
 	}
 
+	
 	public Move getMove() {
-		if (dead == true) {
-			return new Move();
+		final Move move = new Move();
+		if (isDead == true) {
+			return move;
 		}
-		Move move = new Move();
 		
 		// prompts for move
-		System.out.println("Move:\t\t(u)p\t\t(d)own\t\t(l)eft\t\t(r)ight");
-		System.out.println("Attack:\t\t(p)rimary weapon, " + primaryWeapon);
-		System.out.println("\t\t(s)econdary weapon, " + secondaryWeapon);
+		System.out.println("Move: \t\tWASD");
+		System.out.println("Attack:\t\t(r)ight hand, " + rightHand);
+		System.out.println("\t\t(l)eft hand, " + leftHand);
 		System.out.println("Quick items: \t(1) " + hotInventory.get(0) + "\t(2) " + hotInventory.get(1) + "\t(3) " + hotInventory.get(2));
 		System.out.println("Other options:\t(i)nteract\t(t)alk\t\t(m)anage character and inventory");
-		System.out.println("Next action?");
+		System.out.print("Next action?");
 		String actionInput = console.next();
+		
+	
 		
 		//process input
 		switch (actionInput) {
-			case "u": move.action = Action.MOVE;
+			case "w": move.action = Action.MOVE;
 					move.dir = Direction.UP;
 					break;
-			case "d": move.action = Action.MOVE;
+			case "s": move.action = Action.MOVE;
 					move.dir = Direction.DOWN;
 					break;
-			case "l": move.action = Action.MOVE;
+			case "a": move.action = Action.MOVE;
 					move.dir = Direction.LEFT;
 					break;
-			case "r": move.action = Action.MOVE;
+			case "d": move.action = Action.MOVE;
 					move.dir = Direction.RIGHT;
 					break;
-			case "p": move.action = Action.ATTACK;
+			case "r": move.action = Action.ATTACK;
 					move.dir = Direction.STAY;
-					move.weapon = primaryWeapon;
-					move.target = promptTarget();
+					move.weapon = rightHand;
+					move.target = getTarget(move);
 					break;
-			case "s": move.action = Action.ATTACK;
+			case "l": move.action = Action.ATTACK;
 					move.dir = Direction.STAY;
-					move.weapon = secondaryWeapon;
-					move.target = promptTarget();
+					move.weapon = leftHand;
+					move.target = getTarget(move);
 					break;
 			case "1": move.action = Action.USE;
 					move.item = hotInventory.get((Integer.parseInt(actionInput) - 1));
-					move.target = promptTarget();
+					move.target = getTarget(move); break;
 			case "2": move.action = Action.USE;
 					move.item = hotInventory.get((Integer.parseInt(actionInput) - 1));
-					move.target = promptTarget();
+					move.target = getTarget(move); break;
 			case "3": move.action = Action.USE;
 					move.item = hotInventory.get((Integer.parseInt(actionInput) - 1));
-					move.target = promptTarget();
+					move.target = getTarget(move); break;
+			case "x": return new Move();
 			default: System.out.println("Invalid input. Try again!");
-					move = this.getMove();
-					break;
+					this.getMove();
+					break;	
 		}
 		return move;
 	}
 
-	
-	
-	public String promptTarget() {
-		System.out.println("Attack which enemy? ");
-		String target = console.next();
+	public Character getTarget(Move move) {
+		Character target = null;
+		String actionType = "";
+		switch (move.action) {
+			case ATTACK: actionType = "Attack "; break;
+			case USE: actionType = "Use " + move.item + " on"; break;
+			default: break;
+		}
+		System.out.print(actionType + " which character?");
+		String targetString = console.next();
+		for (Character character: currentNode.characterList) {
+			if (character.stringRep.equalsIgnoreCase(targetString)) {
+				target = character;
+			}
+		}
+		if (target == null) {
+			System.out.println("There is no character of that name. Try again.");
+			this.getTarget(move);
+		}
 		return target;
 	}
+	
+	
+	
 	
 	public Direction promptDirection() {
 		System.out.println("Direction?");
@@ -157,7 +195,7 @@ public class Character {
 	}
 	
 	public void die() {
-		dead = true;
+		isDead = true;
 		stringRep = "*";
 	}
 	
