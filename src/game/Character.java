@@ -14,7 +14,7 @@ public class Character {
 	Scanner console = new Scanner(System.in);
 	
 	// IMPORTANT! USED FOR BATTLE! SET EQUAL TO OFFSET IN BATTLETEST
-	public final int SIZE = 50;
+	public final int SIZE = 40;
 	
 	
 	// names and representations

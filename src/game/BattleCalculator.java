@@ -9,9 +9,10 @@ public class BattleCalculator {
 
 	static Random r = new Random();
 
-	public static void attack(Character character, Character target, Move move) {
+	public static String attack(Character character, Character target, Move move) {
+		String result = "";
 		if (character.position.distance(target.position) >= 1.5 * character.rightHand.range) {
-			System.out.println(target.characterName + " is too far away!");
+			result = target.characterName + " is too far away!";
 		} else {
 			int atk = 0;
 			int def = 0;
@@ -30,13 +31,15 @@ public class BattleCalculator {
 				damage = r.nextInt(character.rightHand.die);
 			}
 			target.HP -= damage;
-			System.out.println(character + " did " + damage + " damage to " + target + "!");
+			result = character + " attacks " + target + " with " + character.rightHand + "." + "\n" +
+					character + " did " + damage + " damage to " + target + "!";
 		}
 		if (target.HP <= 0) {
-			System.out.println(target.characterName + " was killed by " + character.characterName + "'s " + character.rightHand + "!");
-			System.out.println();
+			result += "\n" + target.characterName + " was killed by "
+					+ character.characterName + "'s " + character.rightHand + "!";
 			target.die();
 		}
+		return result;
 	}
 	
 	public static void move(Character character, Move thisMove, DungeonNode thisNode) {
@@ -59,7 +62,7 @@ public class BattleCalculator {
 		}
 		if (character.position.y <= 0) {
 			if (character.position.x >= thisNode.x / 2 - 1 && character.position.x <= thisNode.x / 2 + 1) {
-				thisNode = thisNode.up;
+				thisNode = thisNode.nodeMap.get(Direction.UP);
 				character.position.y = thisNode.y;
 				thisNode.characterList.add(character);
 			} else {

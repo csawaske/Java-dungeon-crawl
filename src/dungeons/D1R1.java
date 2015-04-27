@@ -1,6 +1,6 @@
 package dungeons;
 import game.Barbarian;
-
+import enums.*;
 import java.util.*;
 import java.awt.*;
 import java.io.*;
@@ -15,7 +15,7 @@ public class D1R1 extends DungeonNode {
 	}
 
 	public void generateUp()  {
-		this.up = new D1R1();
+		nodeMap.put(Direction.UP, new D1R1());
 	}
 	
 }
