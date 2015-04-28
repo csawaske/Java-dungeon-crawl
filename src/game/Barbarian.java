@@ -39,16 +39,18 @@ public class Barbarian extends Character {
 			move.action = Action.MOVE;
 			if (Math.abs(this.position.x - target.position.x) > Math.abs(this.position.y - target.position.y) ||
 					(Math.abs(this.position.x - target.position.x) == Math.abs(this.position.y - target.position.y) && r.nextBoolean())) {
+				move.point.y = this.position.y;
 				if (this.position.x - target.position.x <= 0) {
-					move.dir = Direction.RIGHT;
+					move.point.x = this.position.x + 1;
 				} else {
-					move.dir = Direction.LEFT;
+					move.point.x = this.position.x - 1;
 				}
 			} else {
+				move.point.x = this.position.x;
 				if (this.position.y - target.position.y <= 0) {
-					move.dir = Direction.DOWN;
+					move.point.y = this.position.y + 1;
 				} else {
-					move.dir = Direction.UP;
+					move.point.y = this.position.y - 1;
 				}
 			}
 			

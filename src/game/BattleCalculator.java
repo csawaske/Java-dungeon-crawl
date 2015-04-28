@@ -9,6 +9,10 @@ public class BattleCalculator {
 
 	static Random r = new Random();
 
+	
+	
+	
+	// process attacks
 	public static String attack(Character character, Character target, Move move) {
 		String result = "";
 		if (character.position.distance(target.position) >= 1.5 * character.rightHand.range) {
@@ -42,33 +46,24 @@ public class BattleCalculator {
 		return result;
 	}
 	
-	public static void move(Character character, Move thisMove, DungeonNode thisNode) {
-		Point previousPosition = new Point(character.position.x, character.position.y);
-		switch (thisMove.dir) {
-		case UP: character.position.translate(0, -1);
-			break;
-		case DOWN: character.position.translate(0, 1);
-			break;
-		case LEFT: character.position.translate(-1, 0);
-			break;
-		case RIGHT: character.position.translate(1, 0);
-			break;
-		default: break;
-		}
-		for (Character other : thisNode.characterList) {
-			if (!other.equals(character) && (character.position.equals(other.position))) {
-				character.position = previousPosition;
-			}
+	
+	
+	
+	
+	// process movement
+	public static Direction move(Character character, Move thisMove, DungeonNode thisNode) {
+		if (thisNode.spaces[thisMove.point.x][thisMove.point.y].character == null) {
+			character.position = thisMove.point;
 		}
 		if (character.position.y <= 0) {
-			if (character.position.x >= thisNode.x / 2 - 1 && character.position.x <= thisNode.x / 2 + 1) {
-				thisNode = thisNode.nodeMap.get(Direction.UP);
-				character.position.y = thisNode.y;
-				thisNode.characterList.add(character);
+			if (character.position.x >= 5 && character.position.x <= 7) {
+				character.position.y = 11;
+				return Direction.UP;
 			} else {
 				character.position.translate(0, character.SIZE);
 			}
 		}
+		return Direction.STAY;
 	}
 	
 	

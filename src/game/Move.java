@@ -1,9 +1,9 @@
 package game;
 
-import enums.Action;
-import enums.Direction;
-import inventory.Item;
+import enums.*;
+import inventory.*;
 import inventory.Weapon;
+import java.awt.*;
 
 public class Move {
 	
@@ -12,6 +12,7 @@ public class Move {
 	Item item;
 	Weapon weapon;
 	Character target;
+	Point point = new Point(0, 0);
 
 	public Move(Action actionIn, Direction dirIn, Item itemIn) {
 		action = actionIn;

@@ -1,26 +1,6 @@
-Name					baseDurability	range	die		statBonus	stat		element		modChance	
-Iron Sword
-sword
-						30				1		4		3			strength	physical	0		
-Iron Sword broke!
-	
-Flame Sword
-sword	
-						5				1		4		3			wisdom		fire		
-Flame Sword extinguished!
-
-Knife
-knife
-						5				1		4		3			dexterity	physical
-Knife broke!
-
-Club
-club
-						30				1		4		3			strength	physical
-Club splintered!
-						
-Fist
-fist
-						100				1		2		0			strength	physical	
-Your forearm broke! Ouch!
- 
+Name					class		baseDurability	range	die		statBonus	stat		element		modChance		breakString
+Iron Sword				sword		30				1		4		3			strength	physical	0				Iron Sword broke!
+Flame Sword				sword		5				1		4		3			wisdom		fire		0				Flame Sword extinguished!
+Knife					knife		5				1		4		3			dexterity	physical	0				Knife broke!
+Club					club		30				1		4		3			strength	physical	0				Club splintered!						
+Fist					fist		100				1		2		0			strength	physical	0				Your forearm broke! Ouch!

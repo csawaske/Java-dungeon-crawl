@@ -13,7 +13,7 @@ import enums.Direction;
 public class Character {
 	Scanner console = new Scanner(System.in);
 	
-	// IMPORTANT! USED FOR BATTLE! SET EQUAL TO OFFSET IN BATTLETEST
+	// IMPORTANT! USED FOR BATTLE! SET EQUAL TO SIZE IN BATTLETEST
 	public final int SIZE = 40;
 	
 	
@@ -95,8 +95,12 @@ public class Character {
 			System.out.println(inventory.get(i).toString());
 		}
 	}
-
 	
+	public Move getMove() {
+		return null;
+	}
+	
+	/*
 	public Move getMove() {
 		final Move move = new Move();
 		if (isDead == true) {
@@ -153,7 +157,7 @@ public class Character {
 					break;	
 		}
 		return move;
-	}
+	} */
 
 	public Character getTarget(Move move) {
 		Character target = null;
