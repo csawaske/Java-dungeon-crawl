@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
+import graphics.*;
 
 import dungeons.*;
 import enums.*;
@@ -38,20 +39,31 @@ public class BattleTest  {
 		final DrawingPanel panel = new DrawingPanel(18 * SIZE, 14 * SIZE);
 		Graphics g = panel.getGraphics();
 		g.setFont(new Font("Monospaced", Font.BOLD, 40));
-		DrawStuff.drawState(g, thisNode, player, new ArrayList<String>());
+		ArrayList<String> result = new ArrayList<String>();
+		DrawStuff.drawState(g, thisNode, player, result);
+
+		
 		
 		panel.addMouseListener((MouseListener) new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                int x = e.getX() / panel.getZoom();
-                int y = e.getY() / panel.getZoom();
-                System.out.println(x / SIZE + ", " + y / SIZE);
-                PlayerMove.makeMove(x / SIZE, y / SIZE, player, thisNode);
+                int x = e.getX() / panel.getZoom() / SIZE;
+                int y = e.getY() / panel.getZoom() / SIZE;
+                System.out.println(x + ", " + y);
+                if (0 <= x && x < 12 && 0 <= y && y < 12) {
+                	PlayerMove.makeMove(x, y, player, thisNode);
+                }
+                if (x == 0 && y == 12) {
+
+                }
+                if (x == 0 && y == 13) {
+
+                }
             }
         });
 		
 
 		while (running == true) {
-			ArrayList<String> result = new ArrayList<String>();
+
 			for (int i = 0; i < thisNode.characterList.size(); i++) {	
 				Character character = thisNode.characterList.get(i);
 				thisNode.charactersToSpaces();
@@ -85,12 +97,23 @@ public class BattleTest  {
 					}
 					// process movement
 					if (thisMove.action.equals(Action.MOVE)) {
-						thisNode.nodeMap.get((BattleCalculator.move(character, thisMove, thisNode)));
+						DungeonNode newNode = thisNode.nodeMap.get((BattleCalculator.move(character, thisMove, thisNode)));
+						if (!newNode.equals(thisNode)) {
+							thisNode = newNode;
+							thisNode.characterList.add(player);
+						}
 					}
 					// process attacks
 					if (thisMove.action.equals(Action.ATTACK)) {
 						result.add(BattleCalculator.attack(character, thisMove.target, thisMove));
+						if (thisMove.target.HP <= 0) {
+							result.add(thisMove.target + " was killed by " + character);
+							thisMove.target.die();
+						}
 					}
+				}
+				if (result.size() > 5) {
+					
 				}
 			}
 			DrawStuff.drawState(g, thisNode, player, result);

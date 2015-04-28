@@ -1,4 +1,5 @@
-package game;
+package graphics;
+import game.Character;
 import inventory.*;
 
 import java.awt.*;
@@ -62,11 +63,18 @@ public class DrawStuff {
 		// draw text
 		g.setFont(new Font("Monospaced", Font.BOLD, 15));
 		g.setColor(Color.WHITE);
-		for (int i = 0; i < result.size(); i++) {
-			g.drawString(result.get(i), SIZE, (14) * SIZE + (i + 1) * SIZE / 3);
+		if (result.size() > 5) {
+			for (int i = 0; i < 5; i++) {
+				g.drawString(result.get(result.size() - 5 + i), SIZE, (12) * SIZE + (i + 1) * SIZE / 3 + SIZE / 8);
+			}
+		} else {
+			for (int i = 0; i < result.size(); i++) {
+				g.drawString(result.get(i), SIZE, (12) * SIZE + (i + 1) * SIZE / 3 + SIZE / 8);
+			}
 		}
-
 	}
+
+	
 	
 	
 	

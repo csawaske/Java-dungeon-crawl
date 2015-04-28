@@ -38,11 +38,6 @@ public class BattleCalculator {
 			result = character + " attacks " + target + " with " + character.rightHand + "." + "\n" +
 					character + " did " + damage + " damage to " + target + "!";
 		}
-		if (target.HP <= 0) {
-			result += "\n" + target.characterName + " was killed by "
-					+ character.characterName + "'s " + character.rightHand + "!";
-			target.die();
-		}
 		return result;
 	}
 	

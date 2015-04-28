@@ -8,4 +8,12 @@ public class TheFirstDungeon extends Dungeon {
 		firstRoom.generateUp();
 	}
 	
+	public void generate() {
+		DungeonNode current = this.firstRoom;
+		DungeonNode previous = this.firstRoom;
+		for (int i = 0; i < 5; i++) {
+			
+		}
+	}
+	
 }

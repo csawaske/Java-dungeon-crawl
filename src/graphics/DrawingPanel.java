@@ -1,4 +1,4 @@
-package game;
+package graphics;
 /**
 The DrawingPanel class provides a simple interface for drawing persistent
 images using a Graphics object.  An internal BufferedImage object is used
@@ -264,9 +264,9 @@ public final class DrawingPanel extends FileFilter
 
     // fields
     private int width, height;             // dimensions of window frame
-    private JFrame frame;                  // overall window frame
-    private JPanel panel;                  // overall drawing surface
-    private ImagePanel imagePanel;         // real drawing surface
+    public JFrame frame;                  // overall window frame
+    public JPanel panel;                  // overall drawing surface
+    public ImagePanel imagePanel;         // real drawing surface
     private BufferedImage image;           // remembers drawing commands
     private Graphics2D g2;                 // graphics context for painting
     private JLabel statusBar;              // status bar showing mouse position
