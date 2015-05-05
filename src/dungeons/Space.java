@@ -22,6 +22,7 @@ public class Space {
 			case WALL: canMove = false; color = Color.GRAY; break;
 			case BLANK: canMove = true; color = Color.BLACK; break;
 			case DOOR: canMove = true; color = Color.BLUE; break;
+			case TRAP: canMove = true; color = Color.GRAY; break;
 			default: break;
 		}
 	}

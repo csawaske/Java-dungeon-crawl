@@ -1,15 +1,12 @@
 package game;
 import inventory.*;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
-import graphics.*;
 
+import graphics.*;
 import dungeons.*;
 import enums.*;
 
@@ -18,7 +15,7 @@ import enums.*;
 
 public class BattleTest  {
 	
-	public static final int SIZE = 50;
+	public static final int SIZE = 40;
 
 	static	DungeonNode thisNode;
 	static Dungeon thisDungeon;
@@ -27,8 +24,8 @@ public class BattleTest  {
 	public static void main(String[] args) {
 		new TotalInventory();
 		new TotalDungeons();
-		new PlayerMove();
 		final Character player = new Character("Connor");
+		new PlayerMove(player);
 		thisDungeon = TotalDungeons.getDungeon("The First Dungeon");
 		thisNode = thisDungeon.firstRoom;
 		Random rand = new Random();
@@ -36,28 +33,32 @@ public class BattleTest  {
 		thisNode.characterList.add(player);
 		boolean running = true;
 		int moveCount = 0;
-		final DrawingPanel panel = new DrawingPanel(18 * SIZE, 14 * SIZE);
+		final DrawingPanel panel = new DrawingPanel(1280, 720);
 		Graphics g = panel.getGraphics();
 		g.setFont(new Font("Monospaced", Font.BOLD, 40));
-		ArrayList<String> result = new ArrayList<String>();
-		DrawStuff.drawState(g, thisNode, player, result);
-
+		new DrawStuff(g, thisNode, player);
 		
+		ArrayList<String> result = new ArrayList<String>();
+		DrawStuff.drawState(thisNode, result);
+
+		 panel.addKeyListener(new KeyListener() {
+		        @Override
+		        public void keyTyped(KeyEvent e) {
+		        }
+
+		        @Override
+		        public void keyPressed(KeyEvent e) {
+		            System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
+		        }
+
+		        @Override
+		        public void keyReleased(KeyEvent e) {
+		        }
+		    });		
 		
 		panel.addMouseListener((MouseListener) new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                int x = e.getX() / panel.getZoom() / SIZE;
-                int y = e.getY() / panel.getZoom() / SIZE;
-                System.out.println(x + ", " + y);
-                if (0 <= x && x < 12 && 0 <= y && y < 12) {
-                	PlayerMove.makeMove(x, y, player, thisNode);
-                }
-                if (x == 0 && y == 12) {
-
-                }
-                if (x == 0 && y == 13) {
-
-                }
+            	PlayerMove.getMove(e.getX(), e.getY(), thisNode);
             }
         });
 		
@@ -80,7 +81,7 @@ public class BattleTest  {
 						thisMove = character.getMove();
 					} else {
 						System.out.println(result);
-						DrawStuff.drawState(g, thisNode, player, result); // draw state at end of turn
+						DrawStuff.drawState(thisNode, result); // draw state at end of turn
 						g.setColor(Color.GREEN);
 						g.fillOval(13 * SIZE, SIZE, SIZE / 4, SIZE / 4);
 						PlayerMove.moveBuilt = false;
@@ -116,7 +117,7 @@ public class BattleTest  {
 					
 				}
 			}
-			DrawStuff.drawState(g, thisNode, player, result);
+			DrawStuff.drawState(thisNode, result);
 			moveCount++;
 			if (player.isDead) {
 				running = false;

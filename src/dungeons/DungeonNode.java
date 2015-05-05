@@ -10,15 +10,18 @@ public class DungeonNode {
 
 	public ArrayList<Character> characterList = new ArrayList<Character>();
 	public Space[][] spaces = new Space[12][12];
+	public int roomSize = 12;
 
 	public EnumMap<Direction, DungeonNode> nodeMap = new EnumMap<>(Direction.class);
 	
-	public DungeonNode() {
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
-				if ( (i == 0 || i == 11) && (j == 5 || j == 6)) {
+	public DungeonNode(int num) {
+		roomSize = num;
+		spaces = new Space[roomSize][roomSize];
+		for (int i = 0; i < roomSize; i++) {
+			for (int j = 0; j < roomSize; j++) {
+				if ( (i == 0 || i == roomSize - 1) && (j == roomSize / 2 || j == roomSize / 2 - 1)) {
 					spaces[i][j] = new Space(SpaceType.DOOR);
-				} else if (i == 0 || i == 11 || j == 0 || j == 11) {
+				} else if (i == 0 || i == roomSize - 1 || j == 0 || j == roomSize - 1) {
 					spaces[i][j] = new Space(SpaceType.WALL);
 				} else {
 					spaces[i][j] = new Space();
@@ -28,9 +31,13 @@ public class DungeonNode {
 		nodeMap.put(Direction.STAY, this);
 	}
 	
+	public DungeonNode() {
+		this(12);
+	}
+	
 	public void charactersToSpaces() {
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
+		for (int i = 0; i < roomSize; i++) {
+			for (int j = 0; j < roomSize; j++) {
 				spaces[i][j].character = null;
 			}
 		}

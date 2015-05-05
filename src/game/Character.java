@@ -56,6 +56,7 @@ public class Character {
 		add(new Item("ONE"));
 		add(new Item("TWO"));
 		add(new Item("THREE"));
+		add(new Item("FOUR"));
 	}};
 	public int money = 100;	
 	

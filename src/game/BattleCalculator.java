@@ -15,7 +15,7 @@ public class BattleCalculator {
 	// process attacks
 	public static String attack(Character character, Character target, Move move) {
 		String result = "";
-		if (character.position.distance(target.position) >= 1.5 * character.rightHand.range) {
+		if (character.position.distance(move.target.position) >= 1.5 * move.weapon.range) {
 			result = target.characterName + " is too far away!";
 		} else {
 			int atk = 0;
@@ -32,10 +32,10 @@ public class BattleCalculator {
 			}
 			int damage = 0;
 			if (atk + character.rightHand.statBonus - def > 0) {
-				damage = r.nextInt(character.rightHand.die);
+				damage = r.nextInt(move.weapon.die);
 			}
 			target.HP -= damage;
-			result = character + " attacks " + target + " with " + character.rightHand + "." + "\n" +
+			result = character + " attacks " + target + " with " + move.weapon + "." + "\n" +
 					character + " did " + damage + " damage to " + target + "!";
 		}
 		return result;

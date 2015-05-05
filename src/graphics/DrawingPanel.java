@@ -105,7 +105,7 @@ import javax.swing.event.MouseInputListener;
 import javax.swing.filechooser.FileFilter;
 
 public final class DrawingPanel extends FileFilter
-    implements ActionListener, MouseMotionListener, Runnable, WindowListener {
+    implements ActionListener, MouseMotionListener, Runnable, WindowListener, KeyListener {
     // inner class to represent one frame of an animated GIF
     private static class ImageFrame {
         public Image image;
@@ -478,7 +478,7 @@ public final class DrawingPanel extends FileFilter
     }
     
     public void addKeyListener(KeyListener listener) {
-        frame.addKeyListener(listener);
+        panel.addKeyListener(listener);
     }
     
     public void addMouseListener(MouseListener listener) {
@@ -3105,4 +3105,22 @@ public final class DrawingPanel extends FileFilter
         os.write(i16 & 0xff);
         os.write(i16 >> 8 & 0xff);
     }
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
